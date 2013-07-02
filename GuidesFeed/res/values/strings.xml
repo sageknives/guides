@@ -6,5 +6,7 @@
     <string name="title_world">World</string>
     <string name="title_my_feed">My Feed</string>
     <string name="title_filters">Filters</string>
+    <string name="twitter">Twitter</string>
+    <string name="instagram">Instagram</string>
 
 </resources>

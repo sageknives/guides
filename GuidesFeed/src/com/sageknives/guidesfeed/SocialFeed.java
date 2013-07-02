@@ -118,11 +118,35 @@ public class SocialFeed extends FragmentActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
+			Fragment fragment = null;
+			if(position == 0)
+			{
+				fragment = new WorldFeed();
+				Bundle args = new Bundle();
+				//args.putInt(WorldFeed.ARG_SECTION_NUMBER, position+ 1);
+				args.putString("title", "twitter and instagram!");
+				fragment.setArguments(args);
+				return fragment;
+			}
+			else if(position == 1)
+			{
+				fragment = new WorldFeed();
+				Bundle args = new Bundle();
+				args.putString("title", "filtered twitter and instagram!");
+				fragment.setArguments(args);
+				return fragment;
+			}
+			else
+			{
+				fragment = new WorldFeed();
+				Bundle args = new Bundle();
+				args.putString("title", "select some tags you want to filter by");
+				fragment.setArguments(args);
+				return fragment;
+			}
+			
+			//args.putString("title", "twitter");
+			
 		}
 
 		@Override
@@ -150,25 +174,25 @@ public class SocialFeed extends FragmentActivity implements
 	 * A dummy fragment representing a section of the app, but that simply
 	 * displays dummy text.
 	 */
-	public static class DummySectionFragment extends Fragment {
+	public static class WorldFeed extends Fragment {
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
 		public static final String ARG_SECTION_NUMBER = "section_number";
 
-		public DummySectionFragment() {
+		public WorldFeed() {
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(
-					R.layout.fragment_social_feed_dummy, container, false);
+					R.layout.fragment_world_feed, container, false);
 			TextView dummyTextView = (TextView) rootView
 					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			//dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+			dummyTextView.setText(getArguments().getString("title"));
 			return rootView;
 		}
 	}
