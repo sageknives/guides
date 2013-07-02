@@ -118,35 +118,31 @@ public class SocialFeed extends FragmentActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = null;
-			if(position == 0)
-			{
-				fragment = new WorldFeed();
-				Bundle args = new Bundle();
-				//args.putInt(WorldFeed.ARG_SECTION_NUMBER, position+ 1);
+			Fragment fragment = new WorldFeed();
+			Bundle args = new Bundle();
+			//since we are only changing the arguments for the bundle,
+			//we don't need to create a new fragment/bundle 
+			if (position == 0) {
+
+				// args.putInt(WorldFeed.ARG_SECTION_NUMBER, position+ 1);
 				args.putString("title", "twitter and instagram!");
 				fragment.setArguments(args);
 				return fragment;
-			}
-			else if(position == 1)
-			{
-				fragment = new WorldFeed();
-				Bundle args = new Bundle();
+			} else if (position == 1) {
+
 				args.putString("title", "filtered twitter and instagram!");
 				fragment.setArguments(args);
 				return fragment;
-			}
-			else
-			{
-				fragment = new WorldFeed();
-				Bundle args = new Bundle();
-				args.putString("title", "select some tags you want to filter by");
+			} else {
+
+				args.putString("title",
+						"select some tags you want to filter by");
 				fragment.setArguments(args);
 				return fragment;
 			}
-			
-			//args.putString("title", "twitter");
-			
+
+			// args.putString("title", "twitter");
+
 		}
 
 		@Override
@@ -187,11 +183,11 @@ public class SocialFeed extends FragmentActivity implements
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(
-					R.layout.fragment_world_feed, container, false);
+			View rootView = inflater.inflate(R.layout.fragment_world_feed,
+					container, false);
 			TextView dummyTextView = (TextView) rootView
 					.findViewById(R.id.section_label);
-			//dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+			// dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
 			dummyTextView.setText(getArguments().getString("title"));
 			return rootView;
 		}
